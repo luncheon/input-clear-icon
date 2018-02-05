@@ -10,43 +10,71 @@
     url:      1,
     email:    1,
     tel:      1,
-    search:   /Gecko\//.test(navigator.userAgent),
+    search:   1,
   }
 
-  var SVG_NAMESPACE = 'http://www.w3.org/2000/svg'
-  var clearIcon = body.appendChild(doc.createElementNS(SVG_NAMESPACE, 'svg'))
-  var path = clearIcon.appendChild(doc.createElementNS(SVG_NAMESPACE, 'path'))
+  var SVG_NAMESPACE_URI = 'http://www.w3.org/2000/svg'
+  var clearTargetElement
+  var previousResolvedStyles = {}
+  var clearIcon         = body.appendChild(doc.createElementNS(SVG_NAMESPACE_URI, 'svg'))
+  var clearIconStyle    = clearIcon.style
+  var path = clearIcon.appendChild(doc.createElementNS(SVG_NAMESPACE_URI, 'path'))
   path.setAttribute('d', 'M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z')
   clearIcon.setAttribute('viewBox', '0 0 24 24')
-  clearIcon.onmousedown = function (event) { event.preventDefault() }
+  clearIcon.onmousedown = function (event) { event.preventDefault() } // prevent getting focus
 
-  var clearIconStyle = clearIcon.style
   clearIconStyle.display  = 'none'
-  clearIconStyle.position = 'absolute'
-  clearIconStyle.cursor   = 'pointer'
+
+  clearIcon.onclick = function() {
+    if (clearTargetElement) {
+      clearTargetElement.value = ''
+      clearTargetElement.dispatchEvent(new Event('input', { bubbles: true }))
+    }
+  }
 
   function listener(event) {
-    var targetElement = event.target
-    var targetElementType = targetElement.type
+    var targetElement         = event.target
+    var targetElementType     = targetElement.type
     if (targetElement.tagName !== 'INPUT' || !TARGET_INPUT_TYPES[targetElementType]) return
 
     if (targetElement.value && doc.activeElement === targetElement && !targetElement.readOnly && !targetElement.disabled) {
-      clearIcon.onclick = function() {
-        targetElement.value = ''
-        targetElement.dispatchEvent(new Event('input', { bubbles: true }))
+      if (clearTargetElement !== targetElement) {
+        clearTargetElement      = targetElement
+        var targetClientRect    = targetElement.getBoundingClientRect()
+        var targetStyle         = getComputedStyle(targetElement)
+        var clearIconSize       = parseInt(targetStyle.fontSize, 10)
+        var targetDataset       = targetElement.dataset
+        var resolvedStyles      = parseStyles(targetDataset.inputClearIconStyle)
+        Object.keys(previousResolvedStyles).forEach(function (styleProperty) { clearIconStyle[styleProperty] = null })
+        clearIcon.setAttribute('class', targetDataset.inputClearIconClass ? targetDataset.inputClearIconClass : 'input-clear-icon')
+        clearIconStyle.cursor   = 'pointer'
+        clearIconStyle.position = 'absolute'
+        clearIconStyle.left     = (root.scrollLeft + body.scrollLeft + targetClientRect.right - clearIconSize - parseInt(targetStyle.borderRightWidth, 10) - parseInt(targetStyle.paddingRight, 10) - (targetElementType === 'number' ? clearIconSize + 4 : 2)) + 'px'
+        clearIconStyle.top      = (root.scrollTop  + body.scrollTop  + targetClientRect.top + (targetClientRect.height - clearIconSize) / 2) + 'px'
+        clearIconStyle.width    = clearIconStyle.height = clearIconSize + 'px'
+        clearIconStyle.zIndex   = parseInt(targetStyle.zIndex, 10) + 1
+        clearIconStyle.display  = null
+        Object.keys(resolvedStyles).forEach(function (styleProperty) { clearIconStyle[styleProperty] = resolvedStyles[styleProperty] })
+        previousResolvedStyles  = resolvedStyles
       }
-      var targetStyle = getComputedStyle(targetElement)
-      var size = parseInt(targetStyle.fontSize, 10)
-      var rect = targetElement.getBoundingClientRect()
-      clearIconStyle.left     = (root.scrollLeft + body.scrollLeft + rect.right - size - parseInt(targetStyle.borderRightWidth, 10) - parseInt(targetStyle.paddingRight, 10) - (targetElementType === 'number' ? size + 4 : 2)) + 'px'
-      clearIconStyle.top      = (root.scrollTop  + body.scrollTop  + rect.top + (rect.height - size) / 2) + 'px'
-      clearIconStyle.width    = clearIconStyle.height = size + 'px'
-      clearIconStyle.zIndex   = parseInt(targetStyle.zIndex, 10) + 1
-      clearIconStyle.display  = null
     } else {
-      clearIcon.onclick = null
-      clearIconStyle.display = 'none'
+      clearTargetElement      = undefined
+      clearIconStyle.display  = 'none'
     }
+  }
+
+  function parseStyles(stylesString) {
+    return (stylesString ? stylesString.split(';') : []).reduce(function (styles, styleString) {
+      var separatorIndex = styleString.indexOf(':')
+      if (separatorIndex !== -1) {
+        styles[camelCaseFromKebabCase(styleString.slice(0, separatorIndex).trim())] = styleString.slice(separatorIndex + 1).trim()
+      }
+      return styles
+    }, {})
+  }
+
+  function camelCaseFromKebabCase(kebabCaseString) {
+    return kebabCaseString.replace(/-([a-z])/g, function ($0, $1) { return $1.toUpperCase() })
   }
 
   addEventListener('focus', listener, true)

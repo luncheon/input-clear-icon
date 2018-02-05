@@ -1,12 +1,12 @@
 {
-  "name": "input-clearable",
+  "name": "input-clear-icon",
   "version": "0.0.0",
   "description": "Show clear icon on focused <input> with non-empty value.",
   "main": "index.js",
   "scripts": {
     "build": "uglifyjs -m -c join_vars=true -o index.min.js index.js"
   },
-  "repository": "luncheon/input-clearable",
+  "repository": "luncheon/input-clear-icon",
   "author": "",
   "license": "WTFPL",
   "keywords": [],
