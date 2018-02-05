@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>input-clearable - Show clear icon on focused &lt;input&gt; with non-empty value.</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata|Poiret+One|Open+Sans:400">
+    <style>
+      *, *::before, *::after { box-sizing: inherit; }
+      html { box-sizing: border-box; }
+      body { margin: 0; padding: 0 0 0 24px; font-family: 'Open Sans'; font-weight: 400; }
+      input:not([type=checkbox]):not([type=radio]):not([type=image]) { display: block; }
+      label { display: block; }
+      h1 { font-size: 300%; margin: .5em 0 .25em 0; font-family: 'Poiret One'; font-weight: normal; }
+      h2 { font-size: 150%; margin: .5em 0; }
+      p { margin: 0; }
+      section { margin: 2em 0; }
+      code, .code { font-family: Inconsolata; color: #039; }
+      .code { white-space: nowrap; padding: 0 2em; }
+    </style>
+  </head>
+  <body>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-64398169-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-64398169-1');
+    </script>
+
+    <script src="./index.min.js"></script>
+
+    <div style="display: flex; align-items: baseline;">
+      <h1>input clearable</h1>
+      <a href="https://github.com/luncheon/input-clearable">
+        <img src="https://cdn.jsdelivr.net/npm/octicons@7.0.1/build/svg/mark-github.svg" alt="GitHub" style="height: 2.25em; margin-left: 1em;">
+      </a>
+    </div>
+    <p>Show clear icon on focused <code>&lt;input&gt;</code> with non-empty value.</p>
+
+    <section>
+      <h2>Usage</h2>
+      <ol>
+        <li>Add a script element to your html.<br><code>&lt;script src="https://luncheon.github.io/input-clearable/index.min.js"&gt;&lt;/script&gt;</code><br>That's all.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Input types cared by this library</h2>
+      <table>
+        <tr><td class="code">&lt;input&gt;</td>                                         <td><input                 placeholder="&lt;input&gt;"></td></tr>
+        <tr><td class="code">&lt;input type=&quot;text&quot;&gt;</td>                   <td><input type="text"     placeholder="&lt;input type=&quot;text&quot;&gt;"></td></tr>
+        <tr><td class="code">&lt;input type=&quot;password&quot;&gt;</td>               <td><input type="password" placeholder="&lt;input type=&quot;password&quot;&gt;"></td></tr>
+        <tr><td class="code">&lt;input type=&quot;number&quot;&gt;</td>                 <td><input type="number"   placeholder="&lt;input type=&quot;number&quot;&gt;"></td></tr>
+        <tr><td class="code">&lt;input type=&quot;url&quot;&gt;</td>                    <td><input type="url"      placeholder="&lt;input type=&quot;url&quot;&gt;"></td></tr>
+        <tr><td class="code">&lt;input type=&quot;email&quot;&gt;</td>                  <td><input type="email"    placeholder="&lt;input type=&quot;email&quot;&gt;"></td></tr>
+        <tr><td class="code">&lt;input type=&quot;tel&quot;&gt;</td>                    <td><input type="tel"      placeholder="&lt;input type=&quot;tel&quot;&gt;"></td></tr>
+        <tr><td class="code">&lt;input type=&quot;search&quot;&gt; (Firefox only)</td>  <td><input type="search"   placeholder="&lt;input type=&quot;search&quot;&gt;"></td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2>Input types NOT cared by this library</h2>
+      <table>
+        <tr><td colspan="2">Readonly / Disabled</td></tr>
+        <tr><td class="code">&lt;input readonly&gt;</td>                                <td><input readonly value="this is readonly"></td></tr>
+        <tr><td class="code">&lt;input disabled&gt;</td>                                <td><input disabled value="this is disabled"></td></tr>
+        <tr><td colspan="2">Date / Time</td></tr>
+        <tr><td class="code">&lt;input type=&quot;date&quot;&gt;</td>                   <td><input type="date"></td></tr>
+        <tr><td class="code">&lt;input type=&quot;time&quot;&gt;</td>                   <td><input type="time"></td></tr>
+        <tr><td class="code">&lt;input type=&quot;month&quot;&gt;</td>                  <td><input type="month"></td></tr>
+        <tr><td class="code">&lt;input type=&quot;week&quot;&gt;</td>                   <td><input type="week"></td></tr>
+        <tr><td class="code">&lt;input type=&quot;datetime-local&quot;&gt;</td>         <td><input type="datetime-local"></td></tr>
+        <tr><td colspan="2">Textarea</td></tr>
+        <tr><td class="code">&lt;textarea&gt;</td>                                      <td><textarea rows="3" cols="30">To prevent accidentally erasing his long love letter.</textarea></td></tr>
+        <tr><td colspan="2">Non-text</td></tr>
+        <tr><td class="code">&lt;input type=&quot;button&quot;&gt;</td>                 <td><input type="button"></td></tr>
+        <tr><td class="code">&lt;input type=&quot;reset&quot;&gt;</td>                  <td><input type="reset"></td></tr>
+        <tr><td class="code">&lt;input type=&quot;submit&quot;&gt;</td>                 <td><input type="submit"></td></tr>
+        <tr><td class="code">&lt;input type=&quot;image&quot;&gt;</td>                  <td><input type="image"></td></tr>
+        <tr><td class="code">&lt;input type=&quot;checkbox&quot;&gt;</td>               <td><input type="checkbox"></td></tr>
+        <tr><td class="code">&lt;input type=&quot;radio&quot;&gt;</td>                  <td><input type="radio"></td></tr>
+        <tr><td class="code">&lt;input type=&quot;file&quot;&gt;</td>                   <td><input type="file"></td></tr>
+        <tr><td class="code">&lt;input type=&quot;color&quot;&gt;</td>                  <td><input type="color"></td></tr>
+        <tr><td class="code">&lt;input type=&quot;range&quot;&gt;</td>                  <td><input type="range"></td></tr>
+        <tr><td class="code">&lt;select&gt;</td>                                        <td><select><option>Apple</option><option>Banana</option></select></td></tr>
+      </table>
+    </section>
+  </body>
+</html>
