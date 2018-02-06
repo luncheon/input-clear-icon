@@ -15,16 +15,13 @@
       h1 { font-size: 300%; margin: .5em 0 .25em 0; font-family: 'Poiret One'; font-weight: normal; }
       h2 { font-size: 150%; margin: .5em 0; }
       pre, p { margin: 0; }
+      dd { margin-bottom: 1em; }
       section { margin: 2em 0; }
       code, .code { font-family: Inconsolata; color: #039; }
       .code { white-space: nowrap; padding: 0 2em; }
       pre.code { white-space: pre; }
     </style>
-    <style>
-      input[type=search]::-webkit-search-cancel-button {
-        -webkit-appearance: none;
-      }
-    </style>
+    <link rel="stylesheet" href="input-clear-icon.min.css">
   </head>
   <body>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-64398169-1"></script>
@@ -35,7 +32,7 @@
       gtag('config', 'UA-64398169-1');
     </script>
 
-    <script src="./index.min.js"></script>
+    <script src="input-clear-icon.min.js"></script>
 
     <div style="display: flex; align-items: baseline;">
       <h1>input clear icon</h1>
@@ -49,16 +46,15 @@
       <h2>Usage</h2>
       <ol>
         <li style="margin-bottom: .5em;">
-          Add a style.
-          <pre><code style="display: block;">&lt;style&gt;
-  input[type=search]::-webkit-search-cancel-button {
-    -webkit-appearance: none;
-  }
-&lt;/style&gt;</code></pre></li>
-        <li style="margin-bottom: .5em;">
-          Add a script.
+          Apply a stylesheet.
           <code style="display: block;">
-            &lt;script src="https://luncheon.github.io/input-clear-icon/index.min.js"&gt;&lt;/script&gt;
+            &lt;link rel="stylesheet" href="<a href="https://luncheon.github.io/input-clear-icon/input-clear-icon.min.css">https://luncheon.github.io/input-clear-icon/input-clear-icon.min.css</a>"&gt;
+          </code>
+        </li>
+        <li style="margin-bottom: .5em;">
+          Load a script.
+          <code style="display: block;">
+            &lt;script src="<a href="https://luncheon.github.io/input-clear-icon/input-clear-icon.min.js">https://luncheon.github.io/input-clear-icon/input-clear-icon.min.js</a>"&gt;&lt;/script&gt;
           </code>
         </li>
         <li style="margin-bottom: .5em;">
@@ -70,38 +66,44 @@
     <section>
       <h2>Styling</h2>
       <ul>
-        <li>The clear icon has "<strong>input-clear-icon</strong>" class by default.</li>
-        <li>"<strong>data-input-clear-icon-class</strong>" attribute of the input element overrides the class.</li>
-        <li>"<strong>data-input-clear-icon-style</strong>" attribute of the input element applies inline style.</li>
+        <li>"<strong>input-clear-icon</strong>" is the tag name of the clear icon that can be used as a CSS selector.</li>
+        <li>"<strong>data-input-clear-icon-class</strong>" attribute of the input element is applied as the class name.</li>
+        <li>"<strong>data-input-clear-icon-style</strong>" attribute of the input element is applied as the inline style.</li>
       </ul>
-      <table>
-        <tr><td class="code">&lt;input value="default"&gt;</td><td><input value="default"></td></tr>
-        <tr>
-          <td>
-            <pre class="code">&lt;style&gt;.my-clear-icon { fill: rgb(64, 128, 255); }&lt;/style&gt;
+      <dl>
+        <dt>
+          <pre class="code">&lt;input value="default"&gt;</pre>
+        </dt>
+        <dd>
+          <input value="default">
+        </dd>
+        <dt>
+          <pre class="code">&lt;style&gt;
+  .my-clear-icon { color: rgb(64, 128, 255); }
+  .my-clear-icon:hover { color: white; background-color: rgb(64, 128, 255); }
+&lt;/style&gt;
 &lt;input
   <strong>data-input-clear-icon-class</strong>="my-clear-icon"
   value="blue"
-&gt;
-</pre>
-          </td>
-          <td>
-            <style>.my-clear-icon { fill: rgb(64, 128, 255); }</style>
-            <input data-input-clear-icon-class="my-clear-icon" value="blue">
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <pre class="code">&lt;input
-  <strong>data-input-clear-icon-style</strong>="fill: #ff4040; border: 1px solid #ff8080; background-color: #fff0f0; border-radius: 50%; pading: 1pdx;"
+&gt;</pre>
+        </dt>
+        <dd>
+          <style>
+            .my-clear-icon { color: rgb(64, 128, 255); }
+            .my-clear-icon:hover { color: white; background-color: rgb(64, 128, 255); }
+          </style>
+          <input data-input-clear-icon-class="my-clear-icon" value="blue">
+        </dd>
+        <dt>
+          <pre class="code">&lt;input
+  <strong>data-input-clear-icon-style</strong>="color: #ff4040; border-color: #ff8080; background-color: #fff0f0; border-radius: 50%; font-size: 9px;"
   value="red-circle"
 &gt;</pre>
-          </td>
-          <td>
-            <input value="red circle" data-input-clear-icon-style="fill: #ff4040; border: 1px solid #ff8080; background-color: #fff0f0; border-radius: 50%; padding: 1px;">
-          </td>
-        </tr>
-      </table>
+        </dt>
+        <dd>
+          <input value="red circle" data-input-clear-icon-style="color: #ff4040; border-color: #ff8080; background-color: #fff0f0; border-radius: 50%; font-size: 9px;">
+        </dd>
+      </dl>
     </section>
 
     <section>

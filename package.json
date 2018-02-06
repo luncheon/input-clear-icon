@@ -4,13 +4,16 @@
   "description": "Show clear icon on focused <input> with non-empty value.",
   "main": "index.js",
   "scripts": {
-    "build": "uglifyjs -m -c join_vars=true -o index.min.js index.js"
+    "build": "npm run minify:css && npm run minify:js",
+    "minify:css": "cleancss -o input-clear-icon.min.css input-clear-icon.css",
+    "minify:js": "uglifyjs -m -c join_vars=true -o input-clear-icon.min.js input-clear-icon.js"
   },
   "repository": "luncheon/input-clear-icon",
   "author": "",
   "license": "WTFPL",
   "keywords": [],
   "devDependencies": {
+    "clean-css-cli": "^4.1.10",
     "uglify-js": "^3.3.9"
   }
 }

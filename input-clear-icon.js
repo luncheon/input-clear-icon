@@ -1,4 +1,4 @@
-/Trident|Edge/.test(navigator.userAgent) || (function() {
+(function() {
   var doc = document
   var body = doc.body
   var root = doc.documentElement
@@ -13,24 +13,20 @@
     search:   1,
   }
 
-  var SVG_NAMESPACE_URI = 'http://www.w3.org/2000/svg'
+  var previousResolvedStyles  = {}
+  var clearIcon               = body.appendChild(doc.createElement('input-clear-icon'))
+  var clearIconStyle          = clearIcon.style
   var clearTargetElement
-  var previousResolvedStyles = {}
-  var clearIcon         = body.appendChild(doc.createElementNS(SVG_NAMESPACE_URI, 'svg'))
-  var clearIconStyle    = clearIcon.style
-  var path = clearIcon.appendChild(doc.createElementNS(SVG_NAMESPACE_URI, 'path'))
-  path.setAttribute('d', 'M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z')
-  clearIcon.setAttribute('viewBox', '0 0 24 24')
-  clearIcon.onmousedown = function (event) { event.preventDefault() } // prevent getting focus
-
-  clearIconStyle.display  = 'none'
-
-  clearIcon.onclick = function() {
+  clearIcon.onmousedown       = function (event) { event.preventDefault() } // prevent getting focus
+  clearIcon.onclick           = function() {
     if (clearTargetElement) {
       clearTargetElement.value = ''
-      clearTargetElement.dispatchEvent(new Event('input', { bubbles: true }))
+      var inputEvent = doc.createEvent('CustomEvent')
+      inputEvent.initCustomEvent('input', true, false, 'input-clear-icon:click')
+      clearTargetElement.dispatchEvent(inputEvent)
     }
   }
+  clearIconStyle.display      = 'none'
 
   function listener(event) {
     var targetElement         = event.target
@@ -42,24 +38,22 @@
         clearTargetElement      = targetElement
         var targetClientRect    = targetElement.getBoundingClientRect()
         var targetStyle         = getComputedStyle(targetElement)
-        var clearIconSize       = parseInt(targetStyle.fontSize, 10)
         var targetDataset       = targetElement.dataset
         var resolvedStyles      = parseStyles(targetDataset.inputClearIconStyle)
-        Object.keys(previousResolvedStyles).forEach(function (styleProperty) { clearIconStyle[styleProperty] = null })
-        clearIcon.setAttribute('class', targetDataset.inputClearIconClass ? targetDataset.inputClearIconClass : 'input-clear-icon')
-        clearIconStyle.cursor   = 'pointer'
-        clearIconStyle.position = 'absolute'
-        clearIconStyle.left     = (root.scrollLeft + body.scrollLeft + targetClientRect.right - clearIconSize - parseInt(targetStyle.borderRightWidth, 10) - parseInt(targetStyle.paddingRight, 10) - (targetElementType === 'number' ? clearIconSize + 4 : 2)) + 'px'
-        clearIconStyle.top      = (root.scrollTop  + body.scrollTop  + targetClientRect.top + (targetClientRect.height - clearIconSize) / 2) + 'px'
-        clearIconStyle.width    = clearIconStyle.height = clearIconSize + 'px'
+        Object.keys(previousResolvedStyles).forEach(function (styleProperty) { clearIconStyle[styleProperty] = '' })
+        clearIcon.className     = targetDataset.inputClearIconClass || ''
+        clearIconStyle.fontSize = targetStyle.fontSize
         clearIconStyle.zIndex   = parseInt(targetStyle.zIndex, 10) + 1
-        clearIconStyle.display  = null
         Object.keys(resolvedStyles).forEach(function (styleProperty) { clearIconStyle[styleProperty] = resolvedStyles[styleProperty] })
+        var clearIconSize       = parseInt(getComputedStyle(clearIcon).fontSize, 10)
+        clearIconStyle.left     = (root.scrollLeft + body.scrollLeft + targetClientRect.right - clearIconSize - parseInt(targetStyle.borderRightWidth, 10) - parseInt(targetStyle.paddingRight, 10) - (targetElementType === 'number' ? parseInt(targetStyle.fontSize, 10) + 4 : 2)) + 'px'
+        clearIconStyle.top      = (root.scrollTop  + body.scrollTop  + targetClientRect.top + (targetClientRect.height - clearIconSize) / 2) + 'px'
+        clearIconStyle.display  = ''
         previousResolvedStyles  = resolvedStyles
       }
     } else {
-      clearTargetElement      = undefined
-      clearIconStyle.display  = 'none'
+      clearTargetElement        = undefined
+      clearIconStyle.display    = 'none'
     }
   }
 
