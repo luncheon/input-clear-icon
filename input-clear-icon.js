@@ -3,6 +3,7 @@
   var body = doc.body
   var root = doc.documentElement
 
+  var IS_IE_OR_EDGE = /Trident|Edge/.test(navigator.userAgent)
   var TARGET_INPUT_TYPES = {
     text:     1,
     password: 1,
@@ -11,6 +12,10 @@
     email:    1,
     tel:      1,
     search:   1,
+  }
+  var ADDITIONAL_RIGHT_MARGINS = {
+    number:   IS_IE_OR_EDGE || 15,
+    password: IS_IE_OR_EDGE && 15,
   }
 
   var previousResolvedStyles  = {}
@@ -29,10 +34,11 @@
   clearIconStyle.display      = 'none'
 
   function listener(event) {
-    var targetElement         = event.target
-    var targetElementType     = targetElement.type
-    if (targetElement.tagName !== 'INPUT' || !TARGET_INPUT_TYPES[targetElementType]) return
-
+    var targetElement           = event.target
+    var targetElementType       = targetElement.type
+    if (targetElement.tagName !== 'INPUT' || !TARGET_INPUT_TYPES[targetElementType]) {
+      return
+    }
     if (targetElement.value && doc.activeElement === targetElement && !targetElement.readOnly && !targetElement.disabled) {
       if (clearTargetElement !== targetElement) {
         clearTargetElement      = targetElement
@@ -46,8 +52,12 @@
         clearIconStyle.zIndex   = parseInt(targetStyle.zIndex, 10) + 1
         Object.keys(resolvedStyles).forEach(function (styleProperty) { clearIconStyle[styleProperty] = resolvedStyles[styleProperty] })
         var clearIconSize       = parseInt(getComputedStyle(clearIcon).fontSize, 10)
-        clearIconStyle.left     = (root.scrollLeft + body.scrollLeft + targetClientRect.right - clearIconSize - parseInt(targetStyle.borderRightWidth, 10) - parseInt(targetStyle.paddingRight, 10) - (targetElementType === 'number' ? parseInt(targetStyle.fontSize, 10) + 4 : 2)) + 'px'
-        clearIconStyle.top      = (root.scrollTop  + body.scrollTop  + targetClientRect.top + (targetClientRect.height - clearIconSize) / 2) + 'px'
+        clearIconStyle.left     = root.scrollLeft + body.scrollLeft + targetClientRect.right - clearIconSize
+                                - parseInt(targetStyle.borderRightWidth, 10) - parseInt(targetStyle.paddingRight, 10)
+                                - (ADDITIONAL_RIGHT_MARGINS[targetElementType] || 0)
+                                - 2
+                                + 'px'
+        clearIconStyle.top      = root.scrollTop  + body.scrollTop  + targetClientRect.top + (targetClientRect.height - clearIconSize) / 2 + 'px'
         clearIconStyle.display  = ''
         previousResolvedStyles  = resolvedStyles
       }

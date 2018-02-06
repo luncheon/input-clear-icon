@@ -1,7 +1,7 @@
 {
   "name": "input-clear-icon",
   "version": "0.0.0",
-  "description": "Show clear icon on focused <input> with non-empty value.",
+  "description": "Show clear icon on <input>.",
   "main": "index.js",
   "scripts": {
     "build": "npm run minify:css && npm run minify:js",
