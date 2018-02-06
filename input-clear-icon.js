@@ -39,7 +39,7 @@
     if (targetElement.tagName !== 'INPUT' || !TARGET_INPUT_TYPES[targetElementType]) {
       return
     }
-    if (targetElement.value && doc.activeElement === targetElement && !targetElement.readOnly && !targetElement.disabled) {
+    if ((targetElement.value || (targetElement.validity || {}).badInput) && doc.activeElement === targetElement && !targetElement.readOnly && !targetElement.disabled) {
       if (clearTargetElement !== targetElement) {
         clearTargetElement      = targetElement
         var targetClientRect    = targetElement.getBoundingClientRect()
