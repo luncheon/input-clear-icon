@@ -1,8 +1,8 @@
 {
   "name": "input-clear-icon",
-  "version": "0.0.0",
-  "description": "Show clear icon on <input>.",
-  "main": "index.js",
+  "version": "0.0.1",
+  "description": "Show a clear icon on the focused <input>.",
+  "main": "input-clear-icon.js",
   "scripts": {
     "build": "npm run minify:css && npm run minify:js",
     "minify:css": "cleancss -o input-clear-icon.min.css input-clear-icon.css",

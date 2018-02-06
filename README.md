@@ -1,18 +1,33 @@
 # input-clear-icon
 
-Show a clear icon on the focused &lt;input>.
+Show a clear icon on the focused &lt;input&gt;.
 
 [Demo](https://luncheon.github.io/input-clear-icon/demo.html)
 
 ## Usage
 
+### via CDN
+
 1. Apply a stylesheet.
 ```html
-<link rel="stylesheet" href="https://luncheon.github.io/input-clear-icon/input-clear-icon.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/input-clear-icon/input-clear-icon.min.css">
 ```
 2. Load a script.
 ```html
-<script src="https://luncheon.github.io/input-clear-icon/input-clear-icon.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/input-clear-icon/input-clear-icon.min.js"></script>
+```
+3. Place input elements as usual.
+
+### via npm
+
+1. Install this package.
+```bash
+$ npm install input-clear-icon
+```
+2. import a stylesheet and a script.
+```javascript
+import 'input-clear-icon/input-clear-icon.css';
+import 'input-clear-icon/input-clear-icon.js';
 ```
 3. Place input elements as usual.
 
