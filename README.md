@@ -9,26 +9,26 @@ Show a clear icon on the focused &lt;input&gt;.
 ### via CDN
 
 1. Apply a stylesheet.
-```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/input-clear-icon/input-clear-icon.min.css">
-```
+    ```html
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/input-clear-icon/input-clear-icon.min.css">
+    ```
 2. Load a script.
-```html
-<script src="https://cdn.jsdelivr.net/npm/input-clear-icon/input-clear-icon.min.js"></script>
-```
+    ```html
+    <script src="https://cdn.jsdelivr.net/npm/input-clear-icon/input-clear-icon.min.js"></script>
+    ```
 3. Place input elements as usual.
 
 ### via npm
 
 1. Install this package.
-```bash
-$ npm install input-clear-icon
-```
+    ```bash
+    $ npm install input-clear-icon
+    ```
 2. import a stylesheet and a script.
-```javascript
-import 'input-clear-icon/input-clear-icon.css';
-import 'input-clear-icon/input-clear-icon.js';
-```
+    ```javascript
+    import 'input-clear-icon/input-clear-icon.css';
+    import 'input-clear-icon/input-clear-icon.js';
+    ```
 3. Place input elements as usual.
 
 ## Styling
