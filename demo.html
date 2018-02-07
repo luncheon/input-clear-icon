@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>input-clearable - Show a clear icon on the focused &lt;input&gt;</title>
+    <title>input clear icon - Show a clear icon on the focused &lt;input&gt;</title>
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata|Poiret+One|Open+Sans:400">
     <style>
@@ -12,7 +12,7 @@
       body { margin: 0; padding: 0 0 0 24px; font-family: 'Open Sans'; font-weight: 400; }
       input:not([type=checkbox]):not([type=radio]):not([type=image]) { display: block; }
       label { display: block; }
-      h1 { font-size: 300%; margin: .5em 0 .25em 0; font-family: 'Poiret One'; font-weight: normal; }
+      h1 { font-size: 300%; margin: .5em 0 .25em 0; white-space: nowrap; font-family: 'Poiret One'; font-weight: normal; }
       h2 { font-size: 150%; margin: .5em 0; }
       pre, p { margin: 0; }
       dd { margin-bottom: 1em; }
@@ -25,12 +25,7 @@
   </head>
   <body>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-64398169-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'UA-64398169-1');
-    </script>
+    <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments)} gtag('js', new Date()); gtag('config', 'UA-64398169-1');</script>
 
     <script src="input-clear-icon.min.js"></script>
 
