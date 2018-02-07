@@ -2,8 +2,9 @@
   var doc = document
   var body = doc.body
   var root = doc.documentElement
+  var userAgent = navigator.userAgent
 
-  var IS_IE_OR_EDGE = /Trident|Edge/.test(navigator.userAgent)
+  var IS_IE_OR_EDGE = /Trident|Edge/.test(userAgent)
   var TARGET_INPUT_TYPES = {
     text:     1,
     password: 1,
@@ -14,7 +15,7 @@
     search:   1,
   }
   var ADDITIONAL_RIGHT_MARGINS = {
-    number:   IS_IE_OR_EDGE || 15,
+    number:   IS_IE_OR_EDGE || /Mobile|Android/.test(userAgent) || 15,
     password: IS_IE_OR_EDGE && 15,
   }
 
