@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>input clear icon - Show a clear icon on the focused &lt;input&gt;</title>
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata|Poiret+One|Open+Sans:400">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata|Poiret+One|Source+Sans+Pro:400,700">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.11.0/themes/prism.css">
     <style>
-      *, *::before, *::after { box-sizing: inherit; }
+      *, *::before, *::after { box-sizing: inherit; -webkit-overflow-scrolling: touch; }
       html { box-sizing: border-box; }
-      body { margin: 0; padding: 0 24px; font-family: 'Open Sans'; font-weight: 400; }
+      body { margin: 0; padding: 0 24px; font-family: 'Source Sans Pro'; font-weight: 400; }
       input:not([type=checkbox]):not([type=radio]):not([type=image]) { display: block; }
       label { display: block; }
       h1 { font-size: 300%; margin: .5em 0 .25em 0; white-space: nowrap; font-family: 'Poiret One'; font-weight: normal; }
@@ -23,6 +23,13 @@
       code[class*="language-"] { line-height: 1.2; font-size: 87.5%; }
       td > code.language-html { margin: 0 .5em 0 40px; }
       dt > pre.language-html { margin: 8px 16px 8px 40px; }
+      @media(max-width: 767px) {
+        body { padding: 0 12px; font-size: 93.75%; }
+        h1 { margin-top: 8px; }
+        h2 { font-size: 140%; }
+        dd, dt > pre.language-html, td > code.language-html { margin-left: 12px; margin-right: 0; }
+        ul, ol { padding-left: 24px; }
+      }
     </style>
     <link rel="stylesheet" href="input-clear-icon.min.css">
   </head>
@@ -35,7 +42,7 @@
     <div style="display: flex; align-items: baseline;">
       <h1>input clear icon</h1>
       <a href="https://github.com/luncheon/input-clear-icon">
-        <img src="https://cdn.jsdelivr.net/npm/octicons@7.0.1/build/svg/mark-github.svg" alt="GitHub" style="height: 2.25em; margin-left: 1em;">
+        <img src="https://cdn.jsdelivr.net/npm/octicons@7.0.1/build/svg/mark-github.svg" alt="GitHub" style="height: 2.25em; margin-left: 1em; vertical-align: bottom;">
       </a>
     </div>
     <p>Show a clear icon on the focused <code style="display: inline;"><span class="token punctuation">&lt;</span><span class="token tag">input</span><span class="token punctuation">&gt;</span></code>.</p>
@@ -73,8 +80,13 @@
         </dd>
         <dt>
           <pre><code class="language-html">&lt;style&gt;
-  .my-clear-icon { color: rgb(64, 128, 255); }
-  .my-clear-icon:hover { color: white; background-color: rgb(64, 128, 255); }
+  .my-clear-icon {
+    color: rgb(64, 128, 255);
+  }
+  .my-clear-icon:hover {
+    color: white;
+    background-color: rgb(64, 128, 255);
+  }
 &lt;/style&gt;
 &lt;input
   <strong>data-input-clear-icon-class</strong>="my-clear-icon"
@@ -83,15 +95,20 @@
         </dt>
         <dd>
           <style>
-            .my-clear-icon { color: rgb(64, 128, 255); }
-            .my-clear-icon:hover { color: white; background-color: rgb(64, 128, 255); }
+            .my-clear-icon {
+              color: rgb(64, 128, 255);
+            }
+            .my-clear-icon:hover {
+              color: white;
+              background-color: rgb(64, 128, 255);
+            }
           </style>
           <input data-input-clear-icon-class="my-clear-icon" value="blue">
         </dd>
         <dt>
           <pre><code class="language-html">&lt;input
   <strong>data-input-clear-icon-style</strong>="color: #ff4040; border-color: #ff8080; background-color: #fff0f0; border-radius: 50%; font-size: 9px;"
-  value="red-circle"
+  value="red circle"
 &gt;</code></pre>
         </dt>
         <dd>
@@ -127,7 +144,7 @@
         <tr><td><code class="language-html">&lt;input type=&quot;week&quot;&gt;</code></td>           <td><input type="week"></td></tr>
         <tr><td><code class="language-html">&lt;input type=&quot;datetime-local&quot;&gt;</code></td> <td><input type="datetime-local"></td></tr>
         <tr><td colspan="2">Textarea</td></tr>
-        <tr><td><code class="language-html">&lt;textarea&gt;</code></td>                              <td><textarea rows="3" cols="30">To prevent accidentally erasing his long love letter.</textarea></td></tr>
+        <tr><td><code class="language-html">&lt;textarea&gt;</code></td>                              <td><textarea rows="4" cols="20">To prevent accidentally erasing his long love letter.</textarea></td></tr>
         <tr><td colspan="2">Non-text</td></tr>
         <tr><td><code class="language-html">&lt;input type=&quot;button&quot;&gt;</code></td>         <td><input type="button"></td></tr>
         <tr><td><code class="language-html">&lt;input type=&quot;reset&quot;&gt;</code></td>          <td><input type="reset"></td></tr>
