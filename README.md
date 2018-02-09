@@ -1,6 +1,6 @@
 # input-clear-icon
 
-Show a clear icon on the focused &lt;input&gt;.
+An icon for clearing text appears on the focused &lt;input&gt;.
 
 [Demo](https://luncheon.github.io/input-clear-icon/demo.html)
 
