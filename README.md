@@ -24,7 +24,7 @@ Show a clear icon on the focused &lt;input&gt;.
     ```bash
     $ npm install input-clear-icon
     ```
-2. import a stylesheet and a script.
+2. Import a stylesheet and a script.
     ```javascript
     import 'input-clear-icon/input-clear-icon.css';
     import 'input-clear-icon/input-clear-icon.js';
