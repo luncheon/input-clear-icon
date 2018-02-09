@@ -22,6 +22,7 @@ input-clear-icon {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 input-clear-icon::before {
