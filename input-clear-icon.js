@@ -40,27 +40,28 @@
     }
     if ((targetElement.value || (targetElement.validity || {}).badInput) && doc.activeElement === targetElement && !targetElement.readOnly && !targetElement.disabled) {
       if (clearTargetElement !== targetElement) {
-        clearTargetElement      = targetElement
+        clearTargetElement              = targetElement
         clearIcon.removeAttribute('style')
-        var targetClientRect    = targetElement.getBoundingClientRect()
-        var targetStyle         = getComputedStyle(targetElement)
-        var targetDataset       = targetElement.dataset
-        var clearIconStyle      = clearIcon.style
-        clearIcon.className     = targetDataset.inputClearIconClass || ''
-        clearIconStyle.fontSize = targetStyle.fontSize
-        clearIconStyle.zIndex   = parseInt(targetStyle.zIndex, 10) + 1
+        var targetClientRect            = targetElement.getBoundingClientRect()
+        var targetStyle                 = getComputedStyle(targetElement)
+        var targetDataset               = targetElement.dataset
+        var clearIconStyle              = clearIcon.style
+        clearIcon.className             = targetDataset.inputClearIconClass || ''
+        clearIconStyle.fontSize         = targetStyle.fontSize
+        clearIconStyle.backgroundColor  = targetStyle.backgroundColor
+        clearIconStyle.zIndex           = parseInt(targetStyle.zIndex, 10) + 1
         applyStyles(clearIconStyle, targetDataset.inputClearIconStyle)
-        var clearIconSize       = parseInt(getComputedStyle(clearIcon).fontSize, 10)
-        clearIconStyle.top      = root.scrollTop  + body.scrollTop  + targetClientRect.top + (targetClientRect.height - clearIconSize) / 2 + 'px'
-        clearIconStyle.left     = root.scrollLeft + body.scrollLeft + targetClientRect.right - clearIconSize
-                                  - parseInt(targetStyle.borderRightWidth, 10) - parseInt(targetStyle.paddingRight, 10)
-                                  - (ADDITIONAL_RIGHT_MARGINS[targetElement.type] || 0)
-                                  - 2
-                                  + 'px'
+        var clearIconSize               = parseInt(getComputedStyle(clearIcon).fontSize, 10)
+        clearIconStyle.top              = root.scrollTop  + body.scrollTop  + targetClientRect.top + (targetClientRect.height - clearIconSize) / 2 + 'px'
+        clearIconStyle.left             = root.scrollLeft + body.scrollLeft + targetClientRect.right - clearIconSize
+                                          - parseInt(targetStyle.borderRightWidth, 10) - parseInt(targetStyle.paddingRight, 10)
+                                          - (ADDITIONAL_RIGHT_MARGINS[targetElement.type] || 0)
+                                          - 2
+                                          + 'px'
       }
     } else {
-      clearIcon.style.display   = 'none'
-      clearTargetElement        = undefined
+      clearIcon.style.display           = 'none'
+      clearTargetElement                = undefined
     }
   }
 
