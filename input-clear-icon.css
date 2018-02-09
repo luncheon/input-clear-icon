@@ -14,8 +14,14 @@ input-clear-icon {
   width: 1em;
   height: 1em;
   box-sizing: content-box;
-  speak: none;
   cursor: pointer;
+  speak: none;
+  touch-action: manipulation;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 input-clear-icon::before {
