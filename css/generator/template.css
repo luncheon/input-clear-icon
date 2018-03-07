@@ -1,0 +1,45 @@
+@font-face {
+  font-family: 'input-clear-icon';
+  src: url('data:application/font-woff;base64,{{fontAsBase64}}');
+}
+
+input-clear-icon {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: -2px; /* for padding and border */
+  padding: 1px;
+  border: 1px solid transparent;
+  width: 1em;
+  height: 1em;
+  box-sizing: content-box;
+  cursor: pointer;
+  speak: none;
+  touch-action: manipulation;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+input-clear-icon::before {
+  content: "x";
+  font-family: input-clear-icon;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+input[type=search]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+::-ms-clear {
+  display: none;
+}
