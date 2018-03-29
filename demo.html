@@ -13,17 +13,18 @@
       html { box-sizing: border-box; }
       body { margin: 0; padding: 0 24px; font-family: 'Source Sans Pro'; font-weight: 400; }
       input:not([type=checkbox]):not([type=radio]):not([type=image]) { display: block; }
-      label { display: block; }
+      label { display: inline-flex; align-items: center; cursor: pointer; }
       h1 { font-size: 300%; margin: .5em 0 .25em 0; white-space: nowrap; font-family: 'Poiret One'; font-weight: normal; }
       h2 { font-size: 150%; margin: .5em 0; }
       p { margin: 0; }
-      dd { margin-bottom: 1em; }
+      dd { margin-bottom: 1.5em; }
       section { margin: 2em 0; }
       code { font-family: Inconsolata; display: block; }
       pre[class*="language-"], :not(pre) > code[class*="language-"] { font-family: Inconsolata; padding: .2em .5em; }
       code[class*="language-"] { line-height: 1.2; font-size: 87.5%; }
       td > code.language-html { margin: 0 .5em 0 40px; }
       dt > pre.language-html { margin: 8px 16px 8px 40px; }
+      ul { margin: 0; }
       @media(max-width: 767px) {
         body { padding: 0 12px; font-size: 93.75%; }
         h1 { margin-top: 8px; }
@@ -32,13 +33,12 @@
         ul, ol { padding-left: 24px; }
       }
     </style>
-    <link rel="stylesheet" href="input-clear-icon.min.css">
   </head>
   <body>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-64398169-1"></script>
     <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments)} gtag('js', new Date()); gtag('config', 'UA-64398169-1');</script>
 
-    <script src="input-clear-icon.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/input-clear-icon@0.1.0/input-clear-icon.min.js"></script>
 
     <div style="display: flex; align-items: baseline;">
       <h1>input clear icon</h1>
@@ -49,40 +49,49 @@
     <p>An icon for clearing text appears on the focused <code style="display: inline;"><span class="token punctuation">&lt;</span><span class="token tag">input</span><span class="token punctuation">&gt;</span></code>.</p>
 
     <section>
-      <h2>Usage</h2>
-      <ol>
-        <li style="margin-bottom: .5em;">
-          Apply a stylesheet.
-          <pre><code class="language-html">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/input-clear-icon/input-clear-icon.min.css"&gt;</code></pre>
-        </li>
-        <li style="margin-bottom: .5em;">
-          Load a script.
-          <pre><code class="language-html">&lt;script src="https://cdn.jsdelivr.net/npm/input-clear-icon/input-clear-icon.min.js"&gt;&lt;/script&gt;</code></pre>
-        </li>
-        <li style="margin-bottom: .5em;">
-          Place input elements as usual.
-        </li>
-      </ol>
-    </section>
-
-    <section>
-      <h2>Styling</h2>
-      <ul>
-        <li>"<strong>input-clear-icon</strong>" is the tag name of the clear icon that can be used as a CSS selector.</li>
-        <li>"<strong>data-input-clear-icon-class</strong>" attribute of the input element is applied as the class name.</li>
-        <li>"<strong>data-input-clear-icon-style</strong>" attribute of the input element is applied as the inline style.</li>
-      </ul>
+      <h2>Icon Styling</h2>
       <dl>
         <dt>
-          <pre><code class="language-html">&lt;input value="default"&gt;</code></pre>
+          <ul><li>
+            Stroke width can be selected.<br>
+            <label><input name="stroke-width" type="radio" onchange="location.search = 'stroke-width=' + this.value" value="thin">       thin       </label>
+            <label><input name="stroke-width" type="radio" onchange="location.search = 'stroke-width=' + this.value" value="extralight"> extralight </label>
+            <label><input name="stroke-width" type="radio" onchange="location.search = 'stroke-width=' + this.value" value="light">      light      </label>
+            <label><input name="stroke-width" type="radio" onchange="location.search = 'stroke-width=' + this.value" value="regular">    regular    </label>
+            <label><input name="stroke-width" type="radio" onchange="location.search = 'stroke-width=' + this.value" value="medium">     medium     </label>
+            <label><input name="stroke-width" type="radio" onchange="location.search = 'stroke-width=' + this.value" value="semibold">   semibold   </label>
+            <label><input name="stroke-width" type="radio" onchange="location.search = 'stroke-width=' + this.value" value="bold">       bold       </label>
+            <label><input name="stroke-width" type="radio" onchange="location.search = 'stroke-width=' + this.value" value="extrabold">  extrabold  </label>
+            <label><input name="stroke-width" type="radio" onchange="location.search = 'stroke-width=' + this.value" value="black">      black      </label>
+          </li></ul>
+          <script>
+            (function (strokeWidth) {
+              var link = document.createElement('link');
+              link.rel = 'stylesheet';
+              link.href = 'https://cdn.jsdelivr.net/npm/input-clear-icon@0.1.0/input-clear-icon.' + strokeWidth + '.min.css';
+              document.head.appendChild(link);
+              document.querySelector('input[name="stroke-width"][value="' + strokeWidth + '"]').checked = true
+            })((location.search.match(/[?&]stroke-width=(thin|extralight|light|regular|medium|semibold|bold|extrabold|black)(&|$)/) || [])[1] || 'regular')
+          </script>
         </dt>
         <dd>
-          <input value="default">
+          <input value="sample">
         </dd>
         <dt>
+          <ul><li>"<strong>input-clear-icon</strong>" is the tag name of the clear icon that can be used as a CSS selector.</li></ul>
+          <pre><code class="language-html">&lt;style&gt;
+  input-clear-icon {
+    /* common style */
+  }
+&lt;/style&gt;</code></pre>
+        </dt>
+        <dd></dd>
+        <dt>
+          <ul><li>"<strong>data-input-clear-icon-class</strong>" attribute of the input element is applied as the class name.</li></ul>
           <pre><code class="language-html">&lt;style&gt;
   .my-clear-icon {
     color: rgb(64, 128, 255);
+    text-shadow: 2px 1px 2px rgba(64, 128, 255, .7);
   }
   .my-clear-icon:hover {
     color: white;
@@ -98,6 +107,7 @@
           <style>
             .my-clear-icon {
               color: rgb(64, 128, 255);
+              text-shadow: 2px 1px 2px rgba(64, 128, 255, .7);
             }
             .my-clear-icon:hover {
               color: white;
@@ -107,6 +117,7 @@
           <input data-input-clear-icon-class="my-clear-icon" value="blue">
         </dd>
         <dt>
+          <ul><li>"<strong>data-input-clear-icon-style</strong>" attribute of the input element is applied as the inline style.</li></ul>
           <pre><code class="language-html">&lt;input
   <strong>data-input-clear-icon-style</strong>="color: #ff4040; border-color: #ff8080; background-color: #fff0f0; border-radius: 50%; font-size: 9px;"
   value="red circle"
