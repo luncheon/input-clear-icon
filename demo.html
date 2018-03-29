@@ -37,7 +37,7 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-64398169-1"></script>
     <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments)} gtag('js', new Date()); gtag('config', 'UA-64398169-1');</script>
 
-    <script src="input-clear-icon.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/input-clear-icon@0.1.0/input-clear-icon.min.js"></script>
 
     <div style="display: flex; align-items: baseline;">
       <h1>input clear icon</h1>
@@ -67,7 +67,7 @@
             (function (strokeWidth) {
               var link = document.createElement('link');
               link.rel = 'stylesheet';
-              link.href = 'input-clear-icon.' + strokeWidth + '.min.css';
+              link.href = 'https://cdn.jsdelivr.net/npm/input-clear-icon@0.1.0/input-clear-icon.' + strokeWidth + '.min.css';
               document.head.appendChild(link);
               document.querySelector('input[name="stroke-width"][value="' + strokeWidth + '"]').checked = true
             })((location.search.match(/[?&]stroke-width=(thin|extralight|light|regular|medium|semibold|bold|extrabold|black)(&|$)/) || [])[1] || 'regular')
