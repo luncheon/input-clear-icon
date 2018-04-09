@@ -1,6 +1,6 @@
 {
   "name": "input-clear-icon",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "An icon for clearing text appears on the focused <input>.",
   "main": "input-clear-icon.js",
   "scripts": {
