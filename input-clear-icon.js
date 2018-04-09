@@ -35,7 +35,7 @@
 
   function listener(event) {
     var targetElement           = event.target
-    if (targetElement.tagName !== 'INPUT' || !TARGET_INPUT_TYPES[targetElement.type]) {
+    if (targetElement.tagName !== 'INPUT' || !TARGET_INPUT_TYPES[targetElement.type] || targetElement.hasAttribute('data-input-clear-icon-hidden')) {
       return
     }
     if ((targetElement.value || (targetElement.validity || {}).badInput) && doc.activeElement === targetElement && !targetElement.readOnly && !targetElement.disabled) {
