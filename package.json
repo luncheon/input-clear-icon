@@ -13,11 +13,11 @@
   "license": "WTFPL",
   "keywords": [],
   "devDependencies": {
-    "clean-css-cli": "^4.1.10",
+    "clean-css-cli": "^4.1.11",
     "svg-outline-stroke": "^1.2.1",
     "svg2ttf": "^4.1.0",
     "ttf2woff": "^2.0.1",
-    "uglify-js": "^3.3.10",
+    "uglify-js": "^3.3.20",
     "xml2js": "^0.4.19"
   }
 }
