@@ -21,11 +21,11 @@ You can easily try it out with just adding the stylesheet and the script.
     ```html
     <!-- Select the stroke width of the icon from "thin", "extralight", "light", "regular", "medium", "semibold", "bold", "extrabold", "black".
          This is the case of "regular" stroke width. -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/input-clear-icon@0.1.0/input-clear-icon.regular.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/input-clear-icon@0.2.0/input-clear-icon.regular.min.css">
     ```
 2. Load the script.
     ```html
-    <script src="https://cdn.jsdelivr.net/npm/input-clear-icon@0.1.0/input-clear-icon.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/input-clear-icon@0.2.0/input-clear-icon.min.js"></script>
     ```
 3. Place input elements as usual.
 
